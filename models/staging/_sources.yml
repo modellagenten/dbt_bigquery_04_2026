@@ -1,0 +1,67 @@
+version: 2
+
+sources:
+  - name: thelook_ecommerce
+    description: "Öffentlicher E-Commerce-Datensatz von Google (bigquery-public-data)."
+    database: "{{ var('thelook_project') }}"
+    schema: "{{ var('thelook_dataset') }}"
+
+    tables:
+      - name: users
+        description: "Registrierte Kund:innen des Shops."
+        columns:
+          - name: id
+            description: "Primärschlüssel."
+            tests:
+              - unique
+              - not_null
+          - name: email
+          - name: first_name
+          - name: last_name
+          - name: country
+          - name: created_at
+
+      - name: products
+        description: "Produktkatalog."
+        columns:
+          - name: id
+            tests:
+              - unique
+              - not_null
+          - name: name
+          - name: brand
+          - name: category
+          - name: retail_price
+          - name: cost
+
+      - name: orders
+        description: "Bestellungen (Header)."
+        columns:
+          - name: order_id
+            tests:
+              - unique
+              - not_null
+          - name: user_id
+            tests:
+              - not_null
+          - name: status
+          - name: created_at
+          - name: shipped_at
+          - name: delivered_at
+          - name: returned_at
+
+      - name: order_items
+        description: "Einzelne Positionen einer Bestellung."
+        columns:
+          - name: id
+            tests:
+              - unique
+              - not_null
+          - name: order_id
+            tests:
+              - not_null
+          - name: product_id
+            tests:
+              - not_null
+          - name: sale_price
+          - name: created_at
