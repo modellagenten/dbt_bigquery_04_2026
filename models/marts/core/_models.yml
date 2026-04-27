@@ -1,8 +1,5 @@
-
 version: 2
-
 models:
-
   - name: dim_products
     description: "products dim"
     columns:
@@ -43,3 +40,18 @@ models:
                 - Shipped
                 - Cancelled
                 - Returned
+
+  - name: fct_order_items
+    description: "..."
+    columns:
+    - name: order_item_id
+      description: "Primärschlüssel."
+      data_tests:
+        - unique
+        - not_null
+    - name: order_id
+      data_tests:
+        - not_null
+    - name: product_id
+      data_tests:
+        - not_null
