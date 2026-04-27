@@ -1,0 +1,23 @@
+
+version: 2
+
+models:
+  - name: fct_orders
+    description: "Angereichert mit Kennzahlen wie Anzahl der Bestellpositionen, Gesamterlös, Gesamtprofit, Dauer der Lieferung."
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: user_id
+        tests:
+          - not_null
+      - name: status
+        tests:
+          - accepted_values:
+              arguments:
+                - Complete
+                - Processing
+                - Shipped
+                - Cancelled
+                - Returned
