@@ -13,3 +13,12 @@ models:
         tests:
           - not_null
           
+  - name: dim_users
+    columns:
+      - name: user_id
+        tests:
+          - not_null
+          - unique
+      - name: email
+        tests:
+          - not_null
