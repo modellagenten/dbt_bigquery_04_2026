@@ -13,7 +13,7 @@ renamed as (
         email,
         age,
         gender,
-        country,
+        country, 
         city,
         postal_code,
         traffic_source,
