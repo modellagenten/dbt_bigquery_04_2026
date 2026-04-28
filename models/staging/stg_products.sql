@@ -18,6 +18,7 @@ renamed as (
         retail_price - cost as margin
 
     from source
+   -- where cost <= 0
 
 )
 

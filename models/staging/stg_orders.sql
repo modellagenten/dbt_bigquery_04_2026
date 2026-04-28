@@ -18,7 +18,7 @@ renamed as (
         returned_at
 
     from source
-
+   where num_of_item <= 0
 )
 
 select * from renamed

@@ -1,0 +1,27 @@
+version: 2 
+models: 
+  - name: stg_products 
+    columns: 
+      - name: retail_price 
+        tests: 
+          - not_null 
+          - expect_positive 
+      - name: cost 
+        tests: 
+          - expect_positive: 
+               config: 
+                severity: warn
+  - name: stg_orders 
+    columns: 
+      - name: num_of_item 
+        tests: 
+          - expect_positive  
+          - unique
+
+  - name: stg_order_items 
+    columns:        
+      - name: sale_price 
+        data_tests: 
+          - expect_min_value: 
+              arguments:
+                min_value: 1                       
