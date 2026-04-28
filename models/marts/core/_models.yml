@@ -10,7 +10,7 @@ models:
       - name: category
         tests:
           - not_null
-          
+
   - name: dim_users
     columns:
       - name: user_id
@@ -20,7 +20,7 @@ models:
       - name: email
         tests:
           - not_null
-          
+
   - name: fct_orders
     description: "Angereichert mit Kennzahlen wie Anzahl der Bestellpositionen, Gesamterlös, Gesamtprofit, Dauer der Lieferung."
     columns:
@@ -44,14 +44,22 @@ models:
   - name: fct_order_items
     description: "..."
     columns:
-    - name: order_item_id
-      description: "Primärschlüssel."
-      data_tests:
-        - unique
-        - not_null
-    - name: order_id
-      data_tests:
-        - not_null
-    - name: product_id
-      data_tests:
-        - not_null
+      - name: order_item_id
+        description: "Primärschlüssel."
+        data_tests:
+          - unique
+          - not_null
+      - name: order_id
+        data_tests:
+          - not_null
+      - name: product_id
+        data_tests:
+          - not_null
+
+  - name: dim_products_priced
+    description: "Produkte mit über Macro `cents_to_euros` konvertierten Preisen."
+    columns:
+      - name: product_id
+        data_tests:
+          - unique
+          - not_null

@@ -11,6 +11,6 @@ select
 retail_price_eur,
  {{ cents_to_euros('cost_cents') }} as
 cost_eur,
- {{ cents_to_euros('retail_price_cents - cost_cents', precision=4) }}
+ {{ cents_to_euros('retail_price_cents - cost_cents', precision=6) }}
 as margin_eur
 from src
