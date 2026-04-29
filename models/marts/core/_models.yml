@@ -1,23 +1,64 @@
 version: 2
 models:
+  - name: dim_products
+    description: "products dim"
+    columns:
+      - name: product_id
+        data_tests:
+          - unique
+          - not_null
+      - name: category
+        data_tests:
+          - not_null
   - name: dim_users
     columns:
       - name: user_id
-        tests:
+        data_tests:
           - not_null
           - unique
       - name: email
-        tests:
+        data_tests:
           - not_null
+
+  - name: fct_orders
+    description: "Angereichert mit Kennzahlen wie Anzahl der Bestellpositionen, Gesamterlös, Gesamtprofit, Dauer der Lieferung."
+    columns:
+      - name: order_id
+        data_tests:
+          - unique
+          - not_null
+      - name: user_id
+        data_tests:
+          - not_null
+      - name: status
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['Complete','Processing','Shipped','Cancelled','Returned']
+
+  - name: fct_order_items
+    description: "..."
+    columns:
+    - name: order_item_id
+      description: "Primärschlüssel."
+      data_tests:
+        - unique
+        - not_null
+    - name: order_id
+      data_tests:
+        - not_null
+    - name: product_id
+      data_tests:
+        - not_null
 
   - name: fct_daily_orders
     description: "Bestellungen aggregiert auf Tagesebene (Incremental)."
     columns:
       - name: order_day
         description: "Bestelldatum (Tag)."
-        tests:
+        data_tests:
           - unique
           - not_null
       - name: n_orders
-        tests:
+        data_tests:
           - not_null
