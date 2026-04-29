@@ -39,17 +39,17 @@ models:
   - name: fct_order_items
     description: "..."
     columns:
-    - name: order_item_id
-      description: "Primärschlüssel."
-      data_tests:
-        - unique
-        - not_null
-    - name: order_id
-      data_tests:
-        - not_null
-    - name: product_id
-      data_tests:
-        - not_null
+      - name: order_item_id
+        description: "Primärschlüssel."
+        data_tests:
+          - unique
+          - not_null
+      - name: order_id
+        data_tests:
+          - not_null
+      - name: product_id
+        data_tests:
+          - not_null
 
   - name: fct_daily_orders
     description: "Bestellungen aggregiert auf Tagesebene (Incremental)."
@@ -61,4 +61,12 @@ models:
           - not_null
       - name: n_orders
         data_tests:
+          - not_null
+
+  - name: dim_products_priced
+    description: "Produkte mit über Macro `cents_to_euros` konvertierten Preisen."
+    columns:
+      - name: product_id
+        data_tests:
+          - unique
           - not_null
